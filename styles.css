@@ -1,45 +1,72 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 header {
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #333;
+  color: white;
+  padding: 1rem;
 }
 
-.logo a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 20px;
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.logo img {
+  height: 40px;
 }
 
 nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 20px;
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  display: inline;
 }
 
 nav a {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
 }
 
-main {
-    padding: 20px;
+nav a:hover {
+  color: #ffd700;
 }
 
 footer {
-    background-color: #f1f1f1;
-    text-align: center;
-    padding: 15px;
-    margin-top: 20px;
+  background: #333;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+main {
+  padding: 1rem;
+}
+
+#productForm input,
+#productForm textarea {
+  display: block;
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.product-card {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin-top: 1rem;
+  max-width: 500px;
 }

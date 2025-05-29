@@ -1,39 +1,117 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ваш сайт</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Головна — Ваш сайт</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <header>
-        <div class="logo">
-    <a href="#"><img src="images\Logo.png" alt="Логотип" /></a>
-</div>
+  <header>
+    <div class="logo"><a href="index.html"><img src="images/logo.png" alt="Логотип" /></a></div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Головна</a></li>
+        <li><a href="about.html">Про нас</a></li>
+        <li><a href="contact.html">Контакти</a></li>
+        <li><a href="catalog.html">Каталог</a></li>
+      </ul>
+    </nav>
+  </header>
 
-        <nav>
-            <ul>
-                <li><a href="#" data-tab="home">Головна</a></li>
-                <li><a href="#" data-tab="about">Про нас</a></li>
-                <li><a href="#" data-tab="contact">Контакти</a></li>
-                <li><a href="#" data-tab="catalog">Каталог</a></li>
-            </ul>
-        </nav>
-    </header>
+  <main>
+    <section class="hero">
+      <h1>Ласкаво просимо!</h1>
+      <p>Оновлюйте контент, додавайте товари та управляйте сайтом без змін у коді.</p>
+      <button id="updateBtn">Оновити інформацію</button>
+    </section>
 
-    <main>
-        <section id="content">
-            <h1>Ласкаво просимо!</h1>
-            <p>Оновлюйте контент, додавайте товари та управляйте сайтом без змін у коді.</p>
-            <button id="updateBtn" type="button">Оновити інформацію</button>
-        </section>
-    </main>
+    <section id="formSection" style="display: none;">
+      <h2>Додати товар</h2>
+      <form id="productForm">
+        <label>
+          Фото:
+          <input type="file" id="productImage" accept="image/*" />
+        </label><br />
+        <label>
+          Назва товару:
+          <input type="text" id="productName" required />
+        </label><br />
+        <label>
+          Ціна:
+          <input type="number" id="productPrice" required />
+        </label><br />
+        <label>
+          Опис:
+          <textarea id="productDescription"></textarea>
+        </label><br />
+        <label>
+          Характеристики:
+          <textarea id="productSpecs"></textarea>
+        </label><br />
+        <label>
+          Відгуки:
+          <textarea id="productReviews"></textarea>
+        </label><br />
+        <button type="submit">Додати товар</button>
+      </form>
+    </section>
 
-    <footer>
-        <p>&copy; 2025 Ваш сайт. Усі права захищені.</p>
-    </footer>
+    <section id="productList">
+      <h2>Список товарів</h2>
+      <div id="productsContainer"></div>
+    </section>
+  </main>
 
-    <script src="script.js"></script>
+  <footer>
+    <p>&copy; 2025 Ваш сайт. Усі права захищені.</p>
+  </footer>
+
+  <script>
+    const updateBtn = document.getElementById('updateBtn');
+    const formSection = document.getElementById('formSection');
+    const productForm = document.getElementById('productForm');
+    const productsContainer = document.getElementById('productsContainer');
+
+    updateBtn.addEventListener('click', () => {
+      formSection.style.display = formSection.style.display === 'none' ? 'block' : 'none';
+    });
+
+    productForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('productName').value;
+      const price = document.getElementById('productPrice').value;
+      const description = document.getElementById('productDescription').value;
+      const specs = document.getElementById('productSpecs').value;
+      const reviews = document.getElementById('productReviews').value;
+      const imageInput = document.getElementById('productImage');
+      const image = imageInput.files[0];
+
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const imageUrl = event.target.result;
+
+        const productCard = document.createElement('div');
+        productCard.classList.add('product-card');
+        productCard.innerHTML = `
+          <img src="${imageUrl}" alt="${name}" style="max-width:150px" />
+          <h3>${name}</h3>
+          <p><strong>Ціна:</strong> ${price} грн</p>
+          <p><strong>Опис:</strong> ${description}</p>
+          <p><strong>Характеристики:</strong> ${specs}</p>
+          <p><strong>Відгуки:</strong> ${reviews}</p>
+        `;
+
+        productsContainer.appendChild(productCard);
+        productForm.reset();
+        formSection.style.display = 'none';
+      };
+
+      if (image) {
+        reader.readAsDataURL(image);
+      }
+    });
+  </script>
 </body>
 </html>
