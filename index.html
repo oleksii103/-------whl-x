@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Головна — Ваш сайт</title>
+  <title>Головна - Гефестова Кузня</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -23,7 +23,7 @@
     <section class="hero">
       <h1>Ласкаво просимо!</h1>
       <p>Оновлюйте контент, додавайте товари та управляйте сайтом без змін у коді.</p>
-      <button id="updateBtn">Оновити інформацію</button>
+      <button id="updateBtn" style="display: none;">Оновити інформацію</button>
     </section>
 
     <section id="formSection" style="display: none;">
@@ -63,55 +63,20 @@
     </section>
   </main>
 
+  <section id="admin-login" style="display: none;">
+    <h2>Адмін-вхід</h2>
+    <form id="login-form">
+      <input type="text" id="username" placeholder="Логін" required>
+      <input type="password" id="password" placeholder="Пароль" required>
+      <input type="submit" value="Увійти">
+    </form>
+    <p id="login-message" style="color: red;"></p>
+  </section>
+
   <footer>
-    <p>&copy; 2025 Ваш сайт. Усі права захищені.</p>
+    <p>&copy; Гефестова Кузня. Усі права захищені.</p>
   </footer>
 
-  <script>
-    const updateBtn = document.getElementById('updateBtn');
-    const formSection = document.getElementById('formSection');
-    const productForm = document.getElementById('productForm');
-    const productsContainer = document.getElementById('productsContainer');
-
-    updateBtn.addEventListener('click', () => {
-      formSection.style.display = formSection.style.display === 'none' ? 'block' : 'none';
-    });
-
-    productForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const name = document.getElementById('productName').value;
-      const price = document.getElementById('productPrice').value;
-      const description = document.getElementById('productDescription').value;
-      const specs = document.getElementById('productSpecs').value;
-      const reviews = document.getElementById('productReviews').value;
-      const imageInput = document.getElementById('productImage');
-      const image = imageInput.files[0];
-
-      const reader = new FileReader();
-      reader.onload = function(event) {
-        const imageUrl = event.target.result;
-
-        const productCard = document.createElement('div');
-        productCard.classList.add('product-card');
-        productCard.innerHTML = `
-          <img src="${imageUrl}" alt="${name}" style="max-width:150px" />
-          <h3>${name}</h3>
-          <p><strong>Ціна:</strong> ${price} грн</p>
-          <p><strong>Опис:</strong> ${description}</p>
-          <p><strong>Характеристики:</strong> ${specs}</p>
-          <p><strong>Відгуки:</strong> ${reviews}</p>
-        `;
-
-        productsContainer.appendChild(productCard);
-        productForm.reset();
-        formSection.style.display = 'none';
-      };
-
-      if (image) {
-        reader.readAsDataURL(image);
-      }
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>

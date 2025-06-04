@@ -1,37 +1,96 @@
-const content = document.getElementById('content');
-const links = document.querySelectorAll('nav a');
+const updateBtn = document.getElementById('updateBtn');
+const formSection = document.getElementById('formSection');
+const productForm = document.getElementById('productForm');
+const productsContainer = document.getElementById('productsContainer');
 
-const tabs = {
-    home: `
-        <h1>Ласкаво просимо!</h1>
-        <p>Оновлюйте контент, додавайте товари та управляйте сайтом без змін у коді.</p>
-        <button id="updateBtn" type="button">Оновити інформацію</button>
-    `,
-    about: `
-        <h1>Про нас</h1>
-        <p>Ми — команда розробників, що створює сучасні веб-рішення для бізнесу та особистих потреб. Наша мета — зробити керування сайтом простим і зручним.</p>
-    `,
-    contact: `
-        <h1>Контакти</h1>
-        <p>Зв'яжіться з нами:</p>
-        <ul>
-            <li>Електронна пошта: info@example.com</li>
-            <li>Телефон: +380 12 345 67 89</li>
-            <li>Адреса: м. Київ, вул. Прикладна, 1</li>
-        </ul>
-    `,
-    catalog: `
-        <h1>Каталог</h1>
-        <p>Каталог ще у розробці. Слідкуйте за оновленнями!</p>
-    `
-};
+// Показати/приховати форму додавання товару
+updateBtn.addEventListener('click', () => {
+  formSection.style.display = formSection.style.display === 'none' ? 'block' : 'none';
+});
 
-links.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const tab = e.target.getAttribute('data-tab');
-        if (tab && tabs[tab]) {
-            content.innerHTML = tabs[tab];
-        }
+// Обробка форми додавання товару
+productForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const name = document.getElementById('productName').value;
+  const price = document.getElementById('productPrice').value;
+  const description = document.getElementById('productDescription').value;
+  const specs = document.getElementById('productSpecs').value;
+  const reviews = document.getElementById('productReviews').value;
+  const imageInput = document.getElementById('productImage');
+  const image = imageInput.files[0];
+
+  const reader = new FileReader();
+  reader.onload = function(event) {
+    const imageUrl = event.target.result;
+
+    const productCard = document.createElement('div');
+    productCard.classList.add('product-card');
+    productCard.innerHTML = `
+      <img src="${imageUrl}" alt="${name}" style="max-width:150px" />
+      <h3>${name}</h3>
+      <p><strong>Ціна:</strong> ${price} грн</p>
+      <p><strong>Опис:</strong> ${description}</p>
+      <p><strong>Характеристики:</strong> ${specs}</p>
+      <p><strong>Відгуки:</strong> ${reviews}</p>
+    `;
+
+    productsContainer.appendChild(productCard);
+    productForm.reset();
+    formSection.style.display = 'none';
+  };
+
+  if (image) {
+    reader.readAsDataURL(image);
+  }
+});
+
+// Логін адміна
+const ADMIN_LOGIN = "admin";
+const ADMIN_PASS = "1234";
+const isAdmin = localStorage.getItem("isAdmin") === "true";
+
+window.addEventListener("DOMContentLoaded", () => {
+  const loginForm = document.getElementById("login-form");
+  const loginMsg = document.getElementById("login-message");
+
+  if (isAdmin) {
+    if (loginForm) loginForm.style.display = "none";
+    document.getElementById("admin-login").style.display = "none";
+    showAdminControls();
+  }
+
+  if (loginForm) {
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      if (username === ADMIN_LOGIN && password === ADMIN_PASS) {
+        localStorage.setItem("isAdmin", "true");
+        loginMsg.textContent = "Вхід успішний!";
+        loginForm.style.display = "none";
+        document.getElementById("admin-login").style.display = "none";
+        showAdminControls();
+      } else {
+        loginMsg.textContent = "Невірний логін або пароль.";
+      }
     });
+  }
+});
+
+// Функція для показу кнопки "Оновити інформацію"
+function showAdminControls() {
+  document.getElementById("updateBtn").style.display = "inline-block";
+}
+
+// Гаряча клавіша: Ctrl + Alt + L
+document.addEventListener("keydown", (e) => {
+  if (e.ctrlKey && e.altKey && e.key.toLowerCase() === 'l') {
+    const loginSection = document.getElementById("admin-login");
+    if (loginSection) {
+      loginSection.style.display = "block";
+      loginSection.scrollIntoView({ behavior: "smooth" });
+    }
+  }
 });

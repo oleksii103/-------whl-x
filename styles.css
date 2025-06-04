@@ -70,3 +70,17 @@ main {
   margin-top: 1rem;
   max-width: 500px;
 }
+
+#admin-login, #admin-controls {
+    background: #fff;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
