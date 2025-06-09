@@ -3,41 +3,102 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Контакти — Гефестова Кузня</title>
+  <title>Контакти - Гефестова Кузня</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
+  <!-- Шапка та меню -->
+<header>
     <div class="logo">
-      <a href="index.html"><img src="images/logo.png" alt="Логотип" /></a>
+      <a href="index.html">
+        <img src="images/logo.png" alt="Гефестова Кузня">
+        <span>Гефестова Кузня</span>
+      </a>
     </div>
-    <div class="top-controls">
-      <button>Реєстрація</button>
-      <button>Кошик</button>
-      <button>Вхід</button>
+    
+    <div class="search-box">
+      <input type="text" placeholder="Пошук по магазину">
+      <button>🔍</button>
+    </div>
+    
+    <div class="header-contacts">
+      <span>+380 (96) 536-41-01</span>
+    </div>
+    
+    <div class="header-buttons">
+      <button class="cart-btn">Кошик (0)</button>
+      <button class="auth-btn">Вхід</button>
     </div>
   </header>
 
-  <aside class="sidebar">
+  <!-- Головне меню -->
+  <nav class="main-menu">
     <ul>
       <li><a href="index.html">Головна</a></li>
+      <li class="dropdown">
+        <a href="catalog.html">Товари ▼</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Ворота з профнастилом</a></li>
+          <li><a href="#">Ковані забори</a></li>
+          <li><a href="#">Хвіртки</a></li>
+          <li><a href="#">Грати</a></li>
+        </ul>
+      </li>
       <li><a href="about.html">Про нас</a></li>
       <li><a href="contact.html">Контакти</a></li>
-      <li><a href="catalog.html">Каталог</a></li>
+      <li><a href="delivery.html">Доставка</a></li>
     </ul>
-  </aside>
+  </nav>
 
-  <main>
-    <h1>Контакти</h1>
-    <ul>
-      <li>Електронна пошта: fmobilend02@gmail.com</li>
-      <li>Телефон: +380682641738</li>
-      <li>Адреса: с. Батьків, Україна</li>
-    </ul>
+  <main class="contact-main">
+    <h1>Наші контакти</h1>
+    
+    <div class="contact-container">
+      <div class="contact-info">
+        <h2>Як нас знайти</h2>
+        <p><strong>Адреса:</strong> м. Київ, вул. Ковальська, 15</p>
+        <p><strong>Телефон:</strong> +380 (96) 536-41-01</p>
+        <p><strong>Email:</strong> gefestova@example.com</p>
+        <p><strong>Графік роботи:</strong> Пн-Пт: 9:00-18:00, Сб: 10:00-15:00</p>
+      </div>
+
+      <div class="contact-map">
+        <iframe src="https://www.google.com/maps/embed?..." width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <form class="contact-form">
+      <h2>Написати нам</h2>
+      <input type="text" placeholder="Ваше ім'я" required>
+      <input type="email" placeholder="Ваш email" required>
+      <input type="tel" placeholder="Ваш телефон">
+      <textarea placeholder="Ваше повідомлення" required></textarea>
+      <button type="submit">Надіслати</button>
+    </form>
   </main>
 
-  <footer>
-    <p>&copy; Гефестова Кузня. Усі права захищені.</p>
+ <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Контакти</h3>
+        <p>+380 (96) 536-41-01</p>
+        <p>email@example.com</p>
+      </div>
+      <div class="footer-section">
+        <h3>Графік роботи</h3>
+        <p>Пн-Пт: 9:00-18:00</p>
+        <p>Сб: 10:00-15:00</p>
+      </div>
+      <div class="footer-section">
+        <h3>Інформація</h3>
+        <a href="#">Доставка</a>
+        <a href="#">Оплата</a>
+        <a href="#">Гарантія</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2023 Гефестова Кузня. Усі права захищені.</p>
+    </div>
   </footer>
 </body>
 </html>

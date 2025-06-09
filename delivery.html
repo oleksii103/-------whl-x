@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Каталог - Гефестова Кузня</title>
+  <title>Доставка - Гефестова Кузня</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Шапка та меню (аналогічно index.html) -->
-<header>
+  <!-- Шапка та меню -->
+ <header>
     <div class="logo">
       <a href="index.html">
         <img src="images/logo.png" alt="Гефестова Кузня">
@@ -49,40 +49,37 @@
       <li><a href="delivery.html">Доставка</a></li>
     </ul>
   </nav>
-
-  <main class="catalog-main">
-    <h1>Каталог товарів</h1>
+  <main class="delivery-main">
+    <h1>Доставка та оплата</h1>
     
-    <div class="catalog-categories">
-      <a href="catalog-gates.html" class="category-card">
-        <img src="images/gates.jpg" alt="Ворота">
-        <h3>Ворота</h3>
-      </a>
-      <a href="catalog-fences.html" class="category-card">
-        <img src="images/fences.jpg" alt="Забори">
-        <h3>Забори</h3>
-      </a>
-      <a href="catalog-grates.html" class="category-card">
-        <img src="images/grates.jpg" alt="Грати">
-        <h3>Грати</h3>
-      </a>
-    </div>
-
-    <section class="popular-products">
-      <h2>Популярні товари</h2>
-      <div class="product-grid">
-        <div class="product-card">
-          <img src="images/product1.jpg" alt="Ворота з кованими елементами">
-          <h3>Ворота з кованими елементами</h3>
-          <p class="price">15 000 грн</p>
-          <button class="add-to-cart">В кошик</button>
+    <section class="delivery-section">
+      <h2>Умови доставки</h2>
+      <div class="delivery-options">
+        <div class="delivery-card">
+          <h3>Самовивіз</h3>
+          <p>З нашого складу за адресою: м. Київ, вул. Ковальська, 15</p>
+          <p><strong>Вартість:</strong> Безкоштовно</p>
         </div>
-        <!-- Інші товари -->
+        <div class="delivery-card">
+          <h3>Доставка по Києву</h3>
+          <p>Доставка нашим транспортом</p>
+          <p><strong>Вартість:</strong> 500 грн</p>
+        </div>
+        <!-- Інші варіанти -->
       </div>
+    </section>
+
+    <section class="payment-section">
+      <h2>Способи оплати</h2>
+      <ul class="payment-methods">
+        <li>Готівкою при отриманні</li>
+        <li>Банківський переказ</li>
+        <li>Оплата карткою онлайн</li>
+      </ul>
     </section>
   </main>
 
-  <footer>
+ <footer>
     <div class="footer-content">
       <div class="footer-section">
         <h3>Контакти</h3>

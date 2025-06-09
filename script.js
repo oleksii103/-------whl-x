@@ -24,18 +24,18 @@ productForm.addEventListener('submit', (e) => {
   reader.onload = function(event) {
     const imageUrl = event.target.result;
 
-    const productCard = document.createElement('div');
-    productCard.classList.add('product-card');
-    productCard.innerHTML = `
-      <img src="${imageUrl}" alt="${name}" style="max-width:150px" />
-      <h3>${name}</h3>
-      <p><strong>Ціна:</strong> ${price} грн</p>
-      <p><strong>Опис:</strong> ${description}</p>
-      <p><strong>Характеристики:</strong> ${specs}</p>
-      <p><strong>Відгуки:</strong> ${reviews}</p>
-    `;
+    const productData = {
+      name,
+      price,
+      description,
+      specs,
+      reviews,
+      image: imageUrl
+    };
 
-    productsContainer.appendChild(productCard);
+    addProductCard(productData);
+    saveProduct(productData);
+
     productForm.reset();
     formSection.style.display = 'none';
   };
@@ -45,6 +45,34 @@ productForm.addEventListener('submit', (e) => {
   }
 });
 
+// Створення картки товару
+function addProductCard({ name, price, description, specs, reviews, image }) {
+  const productCard = document.createElement('div');
+  productCard.classList.add('product-card');
+  productCard.innerHTML = `
+    <img src="${image}" alt="${name}" style="max-width:150px" />
+    <h3>${name}</h3>
+    <p><strong>Ціна:</strong> ${price} грн</p>
+    <p><strong>Опис:</strong> ${description}</p>
+    <p><strong>Характеристики:</strong> ${specs}</p>
+    <p><strong>Відгуки:</strong> ${reviews}</p>
+  `;
+  productsContainer.appendChild(productCard);
+}
+
+// Збереження одного товару у localStorage
+function saveProduct(product) {
+  let products = JSON.parse(localStorage.getItem('products')) || [];
+  products.push(product);
+  localStorage.setItem('products', JSON.stringify(products));
+}
+
+// Завантаження товарів із localStorage
+function loadProductsFromStorage() {
+  const products = JSON.parse(localStorage.getItem('products')) || [];
+  products.forEach(addProductCard);
+}
+
 // Логін адміна
 const ADMIN_LOGIN = "admin";
 const ADMIN_PASS = "1234";
@@ -53,6 +81,8 @@ const isAdmin = localStorage.getItem("isAdmin") === "true";
 window.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.getElementById("login-form");
   const loginMsg = document.getElementById("login-message");
+
+  loadProductsFromStorage();
 
   if (isAdmin) {
     if (loginForm) loginForm.style.display = "none";
@@ -79,9 +109,18 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Функція для показу кнопки "Оновити інформацію"
+// Функція для показу кнопки "Оновити інформацію" і кнопки "Вийти"
 function showAdminControls() {
-  document.getElementById("updateBtn").style.display = "inline-block";
+  updateBtn.style.display = "inline-block";
+
+  const logoutBtn = document.createElement("button");
+  logoutBtn.textContent = "Вийти";
+  logoutBtn.style.marginLeft = "10px";
+  logoutBtn.onclick = () => {
+    localStorage.setItem("isAdmin", "false");
+    location.reload();
+  };
+  document.querySelector(".header-buttons").appendChild(logoutBtn);
 }
 
 // Гаряча клавіша: Ctrl + Alt + L

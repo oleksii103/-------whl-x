@@ -1,90 +1,110 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Головна - Гефестова Кузня</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Гефестова Кузня - Ковані вироби</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Шапка -->
   <header>
-  <div class="logo"><a href="index.html"><img src="images/logo.png" alt="Логотип" /></a></div>
-  <div class="header-buttons">
-    <button onclick="alert('Вхід користувача')">Вхід</button>
-    <button onclick="alert('Реєстрація користувача')">Реєстрація</button>
-    <button onclick="alert('Перейти в кошик')">Кошик</button>
+    <div class="logo">
+      <a href="index.html">
+        <img src="images/logo.png" alt="Гефестова Кузня">
+        <span>Гефестова Кузня</span>
+      </a>
+    </div>
+    
+    <div class="search-box">
+      <input type="text" placeholder="Пошук по магазину">
+      <button>🔍</button>
+    </div>
+    
+    <div class="header-contacts">
+      <span>+380 (96) 536-41-01</span>
+    </div>
+    
+    <div class="header-buttons">
+      <button class="cart-btn">Кошик (0)</button>
+      <button class="auth-btn">Вхід</button>
+    </div>
+  </header>
+
+  <!-- Головне меню -->
+  <nav class="main-menu">
+    <ul>
+      <li><a href="index.html">Головна</a></li>
+      <li class="dropdown">
+        <a href="catalog.html">Товари ▼</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Ворота з профнастилом</a></li>
+          <li><a href="#">Ковані забори</a></li>
+          <li><a href="#">Хвіртки</a></li>
+          <li><a href="#">Грати</a></li>
+        </ul>
+      </li>
+      <li><a href="about.html">Про нас</a></li>
+      <li><a href="contact.html">Контакти</a></li>
+      <li><a href="delivery.html">Доставка</a></li>
+    </ul>
+  </nav>
+
+  <!-- Банер акцій -->
+  <div class="promo-banner">
+    <div class="promo-content">
+      <h2>Ріг з ШАЛЕНИМИ ЗНИЖКАМИ!!!</h2>
+      <button class="promo-btn">Купити з знижкою</button>
+    </div>
   </div>
-</header>
 
-<!-- Бокове меню -->
-<aside class="sidebar">
-  <ul>
-    <li><a href="index.html">Головна</a></li>
-    <li><a href="about.html">Про нас</a></li>
-    <li><a href="contact.html">Контакти</a></li>
-    <li><a href="catalog.html">Каталог</a></li>
-  </ul>
-</aside>
-
-
+  <!-- Основний контент -->
   <main>
-    <section class="hero">
-      <h1>Ласкаво просимо!</h1>
-      <p>Оновлюйте контент, додавайте товари та управляйте сайтом без змін у коді.</p>
-      <button id="updateBtn" style="display: none;">Оновити інформацію</button>
-    </section>
-
-    <section id="formSection" style="display: none;">
-      <h2>Додати товар</h2>
-      <form id="productForm">
-        <label>
-          Фото:
-          <input type="file" id="productImage" accept="image/*" />
-        </label><br />
-        <label>
-          Назва товару:
-          <input type="text" id="productName" required />
-        </label><br />
-        <label>
-          Ціна:
-          <input type="number" id="productPrice" required />
-        </label><br />
-        <label>
-          Опис:
-          <textarea id="productDescription"></textarea>
-        </label><br />
-        <label>
-          Характеристики:
-          <textarea id="productSpecs"></textarea>
-        </label><br />
-        <label>
-          Відгуки:
-          <textarea id="productReviews"></textarea>
-        </label><br />
-        <button type="submit">Додати товар</button>
-      </form>
-    </section>
-
-    <section id="productList">
-      <h2>Список товарів</h2>
-      <div id="productsContainer"></div>
+    <section class="category-section">
+      <h2>Товари та послуги</h2>
+      <div class="category-list">
+        <div class="category-item">
+          <h3>Ворота з профнастилом і кованими елементами</h3>
+          <p>Міцні та елегантні ворота з довговічних матеріалів.</p>
+          <a href="#" class="category-link">Детальніше →</a>
+        </div>
+        <div class="category-item">
+          <h3>Ковані забори</h3>
+          <p>Ексклюзивні дизайни для вашого будинку.</p>
+          <a href="#" class="category-link">Детальніше →</a>
+        </div>
+        <div class="category-item">
+          <h3>Елітні ковані ворота</h3>
+          <p>Індивідуальні проекти для найвимогливіших клієнтів.</p>
+          <a href="#" class="category-link">Детальніше →</a>
+        </div>
+      </div>
     </section>
   </main>
 
-  <section id="admin-login" style="display: none;">
-    <h2>Адмін-вхід</h2>
-    <form id="login-form">
-      <input type="text" id="username" placeholder="Логін" required>
-      <input type="password" id="password" placeholder="Пароль" required>
-      <input type="submit" value="Увійти">
-    </form>
-    <p id="login-message" style="color: red;"></p>
-  </section>
-
+  <!-- Футер -->
   <footer>
-    <p>&copy; Гефестова Кузня. Усі права захищені.</p>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Контакти</h3>
+        <p>+380 (96) 536-41-01</p>
+        <p>email@example.com</p>
+      </div>
+      <div class="footer-section">
+        <h3>Графік роботи</h3>
+        <p>Пн-Пт: 9:00-18:00</p>
+        <p>Сб: 10:00-15:00</p>
+      </div>
+      <div class="footer-section">
+        <h3>Інформація</h3>
+        <a href="#">Доставка</a>
+        <a href="#">Оплата</a>
+        <a href="#">Гарантія</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2023 Гефестова Кузня. Усі права захищені.</p>
+    </div>
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
