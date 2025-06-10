@@ -4,7 +4,256 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Адмін-панель - Гефестова Кузня</title>
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Базові стилі */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
+    
+    .logo span {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    
+    .logout-btn {
+      background-color: #e74c3c;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    
+    .logout-btn:hover {
+      background-color: #c0392b;
+    }
+    
+    nav.admin-menu {
+      background-color: #34495e;
+      padding: 1rem;
+    }
+    
+    nav.admin-menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+    }
+    
+    nav.admin-menu li {
+      margin-right: 1.5rem;
+    }
+    
+    nav.admin-menu a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    
+    nav.admin-menu a:hover {
+      color: #f39c12;
+    }
+    
+    .admin-main {
+      padding: 2rem;
+    }
+    
+    .admin-section {
+      background-color: white;
+      border-radius: 8px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .admin-btn {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+    }
+    
+    .admin-btn:hover {
+      background-color: #2980b9;
+    }
+    
+    .form-section {
+      margin-top: 2rem;
+      border-top: 1px solid #eee;
+      padding-top: 2rem;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    
+    .form-group input[type="text"],
+    .form-group input[type="number"],
+    .form-group input[type="password"],
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.7rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    
+    footer {
+      background-color: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+    
+    /* Стилі для списку товарів */
+    .products-container {
+      margin-top: 2rem;
+    }
+    
+    .product-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      background-color: #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .product-image {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 4px;
+      margin-right: 1.5rem;
+    }
+    
+    .product-info {
+      flex: 1;
+    }
+    
+    .product-title {
+      font-size: 1.2rem;
+      margin: 0 0 0.5rem 0;
+      color: #2c3e50;
+    }
+    
+    .product-price {
+      font-weight: bold;
+      color: #e74c3c;
+      margin-bottom: 0.5rem;
+    }
+    
+    .product-category {
+      display: inline-block;
+      background-color: #3498db;
+      color: white;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .product-description {
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+    
+    .product-actions {
+      margin-top: 1rem;
+    }
+    
+    .edit-btn, .delete-btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      margin-right: 0.5rem;
+    }
+    
+    .edit-btn {
+      background-color: #f39c12;
+      color: white;
+    }
+    
+    .delete-btn {
+      background-color: #e74c3c;
+      color: white;
+    }
+    
+    .edit-btn:hover {
+      background-color: #e67e22;
+    }
+    
+    .delete-btn:hover {
+      background-color: #c0392b;
+    }
+    
+    /* Повідомлення */
+    .message {
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 4px;
+      display: none;
+    }
+    
+    .success {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      display: block;
+    }
+    
+    .error {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+      display: block;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -16,7 +265,7 @@
     </div>
     
     <div class="header-buttons">
-      <button id="logout-btn" class="logout-btn">Вийти</button>
+       <a href="index.html" class="logout-btn">вихід</a>
     </div>
   </header>
 
@@ -31,6 +280,8 @@
   <main class="admin-main">
     <section id="products-section" class="admin-section">
       <h2>Управління товарами</h2>
+      
+      <div id="message" class="message"></div>
       
       <button id="updateBtn" class="admin-btn">Додати новий товар</button>
       
@@ -79,30 +330,8 @@
         <!-- Товари будуть додаватися сюди -->
       </div>
     </section>
-    
-    <section id="orders-section" class="admin-section">
-      <h2>Замовлення</h2>
-      <div class="orders-list">
-        <div class="order-item">
-          <div class="order-header">
-            <span class="order-id">#1001</span>
-            <span class="order-date">15.06.2023</span>
-            <span class="order-status">В обробці</span>
-          </div>
-          <div class="order-details">
-            <p><strong>Клієнт:</strong> Іваненко Петро</p>
-            <p><strong>Сума:</strong> 54 500 грн</p>
-            <p><strong>Доставка:</strong> Кур'єром по Києву</p>
-          </div>
-          <div class="order-actions">
-            <button class="admin-btn">Деталі</button>
-            <button class="admin-btn">Змінити статус</button>
-          </div>
-        </div>
-        <!-- Інші замовлення -->
-      </div>
-    </section>
-    
+   
+
     <section id="settings-section" class="admin-section">
       <h2>Налаштування</h2>
       <form class="settings-form">
@@ -132,6 +361,232 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Відображення форми при кліку на кнопку
+      const updateBtn = document.getElementById('updateBtn');
+      const formSection = document.getElementById('formSection');
+      
+      updateBtn.addEventListener('click', function() {
+        if (formSection.style.display === 'none') {
+          formSection.style.display = 'block';
+          updateBtn.textContent = 'Скасувати';
+        } else {
+          formSection.style.display = 'none';
+          updateBtn.textContent = 'Додати новий товар';
+          document.getElementById('productForm').reset();
+        }
+      });
+      
+      // Обробка форми додавання товару
+      const productForm = document.getElementById('productForm');
+      const productsContainer = document.getElementById('productsContainer');
+      const messageDiv = document.getElementById('message');
+      
+      // Масив для зберігання товарів (в реальному додатку це буде база даних)
+      let products = JSON.parse(localStorage.getItem('products')) || [];
+      
+      // Відображення всіх товарів при завантаженні сторінки
+      renderProducts();
+      
+      productForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Отримання значень з форми
+        const productName = document.getElementById('productName').value;
+        const productPrice = document.getElementById('productPrice').value;
+        const productCategory = document.getElementById('productCategory').value;
+        const productDescription = document.getElementById('productDescription').value;
+        const productSpecs = document.getElementById('productSpecs').value;
+        const productImage = document.getElementById('productImage').files[0];
+        
+        // Перевірка на заповненість обов'язкових полів
+        if (!productName || !productPrice || !productImage) {
+          showMessage('Будь ласка, заповніть всі обов\'язкові поля', 'error');
+          return;
+        }
+        
+        // Читання зображення як Data URL
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const product = {
+            id: Date.now(), // Генеруємо унікальний ID
+            name: productName,
+            price: productPrice,
+            category: productCategory,
+            description: productDescription,
+            specs: productSpecs,
+            image: e.target.result,
+            createdAt: new Date().toISOString()
+          };
+          
+          // Додаємо товар до масиву
+          products.push(product);
+          
+          // Зберігаємо у localStorage
+          localStorage.setItem('products', JSON.stringify(products));
+          
+          // Оновлюємо відображення товарів
+          renderProducts();
+          
+          // Очищаємо форму
+          productForm.reset();
+          
+          // Ховаємо форму
+          formSection.style.display = 'none';
+          updateBtn.textContent = 'Додати новий товар';
+          
+          // Показуємо повідомлення про успіх
+          showMessage('Товар успішно додано!', 'success');
+        };
+        reader.readAsDataURL(productImage);
+      });
+      
+      // Функція для відображення товарів
+      function renderProducts() {
+        productsContainer.innerHTML = '';
+        
+        if (products.length === 0) {
+          productsContainer.innerHTML = '<p>Немає товарів для відображення</p>';
+          return;
+        }
+        
+        // Сортування товарів за датою створення (новіші першими)
+        products.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        
+        products.forEach(product => {
+          const productCard = document.createElement('div');
+          productCard.className = 'product-card';
+          
+          // Отримання назви категорії для відображення
+          let categoryName = '';
+          switch(product.category) {
+            case 'gates': categoryName = 'Ворота'; break;
+            case 'fences': categoryName = 'Забори'; break;
+            case 'grates': categoryName = 'Грати'; break;
+            default: categoryName = 'Інше';
+          }
+          
+          productCard.innerHTML = `
+            <img src="${product.image}" alt="${product.name}" class="product-image">
+            <div class="product-info">
+              <h3 class="product-title">${product.name}</h3>
+              <div class="product-price">${product.price} грн</div>
+              <span class="product-category">${categoryName}</span>
+              <p class="product-description">${product.description || 'Опис відсутній'}</p>
+              <div class="product-actions">
+                <button class="edit-btn" data-id="${product.id}">Редагувати</button>
+                <button class="delete-btn" data-id="${product.id}">Видалити</button>
+              </div>
+            </div>
+          `;
+          
+          productsContainer.appendChild(productCard);
+        });
+        
+        // Додаємо обробники подій для кнопок редагування та видалення
+        document.querySelectorAll('.edit-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const productId = parseInt(this.getAttribute('data-id'));
+            editProduct(productId);
+          });
+        });
+        
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const productId = parseInt(this.getAttribute('data-id'));
+            deleteProduct(productId);
+          });
+        });
+      }
+      
+      // Функція для редагування товару
+      function editProduct(productId) {
+        const product = products.find(p => p.id === productId);
+        if (!product) return;
+        
+        // Заповнюємо форму даними товару
+        document.getElementById('productName').value = product.name;
+        document.getElementById('productPrice').value = product.price;
+        document.getElementById('productCategory').value = product.category;
+        document.getElementById('productDescription').value = product.description || '';
+        document.getElementById('productSpecs').value = product.specs || '';
+        
+        // Показуємо форму
+        formSection.style.display = 'block';
+        updateBtn.textContent = 'Скасувати';
+        
+        // Змінюємо обробник події форми для оновлення товару
+        productForm.onsubmit = function(e) {
+          e.preventDefault();
+          
+          // Оновлюємо дані товару
+          product.name = document.getElementById('productName').value;
+          product.price = document.getElementById('productPrice').value;
+          product.category = document.getElementById('productCategory').value;
+          product.description = document.getElementById('productDescription').value;
+          product.specs = document.getElementById('productSpecs').value;
+          
+          // Оновлюємо зображення, якщо воно було змінено
+          const newImage = document.getElementById('productImage').files[0];
+          if (newImage) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+              product.image = e.target.result;
+              saveAndRender();
+            };
+            reader.readAsDataURL(newImage);
+          } else {
+            saveAndRender();
+          }
+        };
+        
+        function saveAndRender() {
+          // Зберігаємо зміни
+          localStorage.setItem('products', JSON.stringify(products));
+          
+          // Оновлюємо відображення
+          renderProducts();
+          
+          // Очищаємо форму
+          productForm.reset();
+          
+          // Ховаємо форму
+          formSection.style.display = 'none';
+          updateBtn.textContent = 'Додати новий товар';
+          
+          // Показуємо повідомлення про успіх
+          showMessage('Товар успішно оновлено!', 'success');
+          
+          // Повертаємо оригінальний обробник події
+          productForm.onsubmit = handleFormSubmit;
+        }
+      }
+      
+      // Функція для видалення товару
+      function deleteProduct(productId) {
+        if (confirm('Ви впевнені, що хочете видалити цей товар?')) {
+          products = products.filter(p => p.id !== productId);
+          localStorage.setItem('products', JSON.stringify(products));
+          renderProducts();
+          showMessage('Товар успішно видалено!', 'success');
+        }
+      }
+      
+      // Функція для відображення повідомлень
+      function showMessage(text, type) {
+        messageDiv.textContent = text;
+        messageDiv.className = 'message ' + type;
+        
+        // Ховаємо повідомлення через 3 секунди
+        setTimeout(() => {
+          messageDiv.style.display = 'none';
+        }, 3000);
+      }
+      
+      // Оригінальний обробник події для форми
+      const handleFormSubmit = productForm.onsubmit;
+    });
+  </script>
 </body>
 </html>
