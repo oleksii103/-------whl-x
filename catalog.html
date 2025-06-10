@@ -48,8 +48,8 @@
       margin-bottom: 15px;
     }
     
-    .add-to-cart {
-      background-color: #2ecc71;
+    .buy-now {
+      background-color: #e74c3c;
       color: white;
       border: none;
       padding: 10px;
@@ -58,10 +58,13 @@
       border-radius: 4px;
       font-size: 16px;
       transition: background-color 0.3s;
+      text-decoration: none;
+      display: block;
+      text-align: center;
     }
     
-    .add-to-cart:hover {
-      background-color: #27ae60;
+    .buy-now:hover {
+      background-color: #c0392b;
     }
     
     .filters {
@@ -154,13 +157,10 @@
     </div>
     
     <div class="header-contacts">
-      <span>+380 (96) 536-41-01</span>
+      <span>+380682641738</span>
     </div>
     
     <div class="header-buttons">
-      <a href="cart.html" class="header-btn cart-btn">
-        <i>🛒</i> Кошик (<span id="cart-count">0</span>)
-      </a>
       <a href="login.html" class="header-btn log-btn">
         <i>👤</i> Вхід
       </a>
@@ -181,20 +181,7 @@
   <main class="catalog-main">
     <h1>Каталог товарів</h1>
     
-    <div class="catalog-categories">
-      <a href="catalog-gates.html" class="category-card">
-        <img src="images/gates.jpg" alt="Ворота">
-        <h3>Ворота</h3>
-      </a>
-      <a href="catalog-fences.html" class="category-card">
-        <img src="images/fences.jpg" alt="Забори">
-        <h3>Забори</h3>
-      </a>
-      <a href="catalog-grates.html" class="category-card">
-        <img src="images/grates.jpg" alt="Грати">
-        <h3>Грати</h3>
-      </a>
-    </div>
+   
     
     <!-- Фільтри товарів -->
     <div class="filters">
@@ -228,13 +215,12 @@
     <div class="footer-content">
       <div class="footer-section">
         <h3>Контакти</h3>
-        <p>+380 (96) 536-41-01</p>
-        <p>email@example.com</p>
+        <p>+380682641738</p>
+        <p> fmobilend02@gmail.com </p>
       </div>
       <div class="footer-section">
         <h3>Графік роботи</h3>
         <p>Пн-Пт: 9:00-18:00</p>
-        <p>Сб: 10:00-15:00</p>
       </div>
       <div class="footer-section">
         <h3>Інформація</h3>
@@ -250,6 +236,55 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Тестові дані товарів
+      const sampleProducts = [
+        {
+          id: 1,
+          name: "Металеві ворота",
+          price: 15000,
+          category: "gates",
+          image: "images/gates.jpg",
+          createdAt: "2023-01-15"
+        },
+        {
+          id: 2,
+          name: "Ковані забори",
+          price: 2500,
+          category: "fences",
+          image: "images/fences.jpg",
+          createdAt: "2023-02-20"
+        },
+        {
+          id: 3,
+          name: "Грати для вікон",
+          price: 3500,
+          category: "grates",
+          image: "images/grates.jpg",
+          createdAt: "2023-03-10"
+        },
+        {
+          id: 4,
+          name: "Ворота з автоматикою",
+          price: 22000,
+          category: "gates",
+          image: "images/gates2.jpg",
+          createdAt: "2023-04-05"
+        },
+        {
+          id: 5,
+          name: "Забор з профнастилу",
+          price: 1800,
+          category: "fences",
+          image: "images/fences2.jpg",
+          createdAt: "2023-05-12"
+        }
+      ];
+
+      // Зберігаємо тестові товари в localStorage (якщо їх там ще немає)
+      if (!localStorage.getItem('products')) {
+        localStorage.setItem('products', JSON.stringify(sampleProducts));
+      }
+
       // Отримуємо товари з localStorage
       const products = JSON.parse(localStorage.getItem('products')) || [];
       const productsContainer = document.getElementById('productsContainer');
@@ -259,7 +294,9 @@
       // Оновлюємо лічильник кошика
       function updateCartCount() {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+        if (cartCount) {
+          cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+        }
       }
       
       // Функція для відображення товарів
@@ -275,59 +312,17 @@
           const productCard = document.createElement('div');
           productCard.className = 'product-card';
           
-          // Отримання назви категорії для відображення
-          let categoryName = '';
-          switch(product.category) {
-            case 'gates': categoryName = 'Ворота'; break;
-            case 'fences': categoryName = 'Забори'; break;
-            case 'grates': categoryName = 'Грати'; break;
-            default: categoryName = 'Інше';
-          }
-          
           productCard.innerHTML = `
             <img src="${product.image}" alt="${product.name}" class="product-image">
             <div class="product-info">
               <h3 class="product-title">${product.name}</h3>
               <div class="product-price">${product.price} грн</div>
-              <button class="add-to-cart" data-id="${product.id}">Додати до кошика</button>
+              <a href="contact.html" class="buy-now">Купити</a>
             </div>
           `;
           
           productsContainer.appendChild(productCard);
         });
-        
-        // Додаємо обробники подій для кнопок "Додати до кошика"
-        document.querySelectorAll('.add-to-cart').forEach(btn => {
-          btn.addEventListener('click', function() {
-            const productId = parseInt(this.getAttribute('data-id'));
-            addToCart(productId);
-          });
-        });
-      }
-      
-      // Функція для додавання товару до кошика
-      function addToCart(productId) {
-        const product = products.find(p => p.id === productId);
-        if (!product) return;
-        
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const existingItem = cart.find(item => item.id === productId);
-        
-        if (existingItem) {
-          existingItem.quantity += 1;
-        } else {
-          cart.push({
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            image: product.image,
-            quantity: 1
-          });
-        }
-        
-        localStorage.setItem('cart', JSON.stringify(cart));
-        updateCartCount();
-        alert(`${product.name} додано до кошика!`);
       }
       
       // Фільтрація та сортування товарів
