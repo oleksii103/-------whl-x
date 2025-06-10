@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ворота - Гефестова Кузня</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <img src="images/logo.png" alt="Гефестова Кузня">
+        <span>Гефестова Кузня</span>
+      </a>
+    </div>
+    
+    <div class="search-box">
+      <input type="text" placeholder="Пошук по магазину">
+      <button>🔍</button>
+    </div>
+    
+    <div class="header-contacts">
+      <span>+380 (96) 536-41-01</span>
+    </div>
+    
+    <div class="header-buttons">
+      <a href="cart.html" class="cart-btn">Кошик (<span id="cart-count">0</span>)</a>
+      <button class="auth-btn">Вхід</button>
+    </div>
+  </header>
+
+  <nav class="main-menu">
+    <ul>
+      <li><a href="index.html">Головна</a></li>
+      <li>
+        <a href="catalog.html">Товари</a>
+      </li>
+      <li><a href="about.html">Про нас</a></li>
+      <li><a href="contact.html">Контакти</a></li>
+      <li><a href="delivery.html">Доставка</a></li>
+    </ul>
+  </nav>
+
+  <main class="catalog-main">
+    <h1>Ковані ворота</h1>
+    
+    <div class="breadcrumbs">
+      <a href="index.html">Головна</a> > 
+      <a href="catalog.html">Каталог</a> > 
+      <span>Ворота</span>
+    </div>
+
+    <div class="catalog-filters">
+      <div class="filter-group">
+        <h3>Тип воріт:</h3>
+        <label><input type="checkbox" checked> З профнастилом</label>
+        <label><input type="checkbox" checked> Повністю ковані</label>
+        <label><input type="checkbox" checked> З хвірткою</label>
+      </div>
+      <div class="filter-group">
+        <h3>Ціна:</h3>
+        <input type="range" min="5000" max="50000" value="15000" class="price-slider">
+        <div class="price-range">
+          <span>5000 грн</span>
+          <span>50000 грн</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="images/gate1.jpg" alt="Ворота з кованими елементами">
+        <h3>Ворота "Престиж"</h3>
+        <div class="product-info">
+          <span class="price">18 500 грн</span>
+          <span class="old-price">21 000 грн</span>
+          <span class="discount">-12%</span>
+        </div>
+        <button class="add-to-cart" data-id="1">В кошик</button>
+        <a href="product-detail.html" class="view-details">Детальніше</a>
+      </div>
+
+      <div class="product-card">
+        <img src="images/gate2.jpg" alt="Елітні ковані ворота">
+        <h3>Ворота "Люкс"</h3>
+        <div class="product-info">
+          <span class="price">32 000 грн</span>
+        </div>
+        <button class="add-to-cart" data-id="2">В кошик</button>
+        <a href="product-detail.html" class="view-details">Детальніше</a>
+      </div>
+
+      <!-- Додаткові товари -->
+    </div>
+
+    <div class="pagination">
+      <a href="#" class="active">1</a>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <a href="#">></a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Контакти</h3>
+        <p>+380 (96) 536-41-01</p>
+        <p>gefestova@example.com</p>
+      </div>
+      <div class="footer-section">
+        <h3>Графік роботи</h3>
+        <p>Пн-Пт: 9:00-18:00</p>
+        <p>Сб: 10:00-15:00</p>
+      </div>
+      <div class="footer-section">
+        <h3>Інформація</h3>
+        <a href="delivery.html">Доставка</a>
+        <a href="#">Оплата</a>
+        <a href="#">Гарантія</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2023 Гефестова Кузня. Усі права захищені.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
