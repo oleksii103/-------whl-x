@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Адмін-панель - Гефестова Кузня</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <img src="images/logo.png" alt="Гефестова Кузня">
+        <span>Гефестова Кузня</span>
+      </a>
+    </div>
+    
+    <div class="header-buttons">
+      <button id="logout-btn" class="logout-btn">Вийти</button>
+    </div>
+  </header>
+
+  <nav class="admin-menu">
+    <ul>
+      <li><a href="#products-section">Товари</a></li>
+      <li><a href="#orders-section">Замовлення</a></li>
+      <li><a href="#settings-section">Налаштування</a></li>
+    </ul>
+  </nav>
+
+  <main class="admin-main">
+    <section id="products-section" class="admin-section">
+      <h2>Управління товарами</h2>
+      
+      <button id="updateBtn" class="admin-btn">Додати новий товар</button>
+      
+      <div id="formSection" class="form-section" style="display: none;">
+        <form id="productForm" class="product-form">
+          <div class="form-group">
+            <label for="productName">Назва товару *</label>
+            <input type="text" id="productName" name="productName" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="productPrice">Ціна *</label>
+            <input type="number" id="productPrice" name="productPrice" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="productCategory">Категорія *</label>
+            <select id="productCategory" name="productCategory" required>
+              <option value="gates">Ворота</option>
+              <option value="fences">Забори</option>
+              <option value="grates">Грати</option>
+              <option value="other">Інше</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="productDescription">Опис товару</label>
+            <textarea id="productDescription" name="productDescription"></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="productSpecs">Характеристики</label>
+            <textarea id="productSpecs" name="productSpecs"></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="productImage">Зображення товару *</label>
+            <input type="file" id="productImage" name="productImage" accept="image/*" required>
+          </div>
+          
+          <button type="submit" class="admin-btn">Зберегти товар</button>
+        </form>
+      </div>
+      
+      <div id="productsContainer" class="products-container">
+        <!-- Товари будуть додаватися сюди -->
+      </div>
+    </section>
+    
+    <section id="orders-section" class="admin-section">
+      <h2>Замовлення</h2>
+      <div class="orders-list">
+        <div class="order-item">
+          <div class="order-header">
+            <span class="order-id">#1001</span>
+            <span class="order-date">15.06.2023</span>
+            <span class="order-status">В обробці</span>
+          </div>
+          <div class="order-details">
+            <p><strong>Клієнт:</strong> Іваненко Петро</p>
+            <p><strong>Сума:</strong> 54 500 грн</p>
+            <p><strong>Доставка:</strong> Кур'єром по Києву</p>
+          </div>
+          <div class="order-actions">
+            <button class="admin-btn">Деталі</button>
+            <button class="admin-btn">Змінити статус</button>
+          </div>
+        </div>
+        <!-- Інші замовлення -->
+      </div>
+    </section>
+    
+    <section id="settings-section" class="admin-section">
+      <h2>Налаштування</h2>
+      <form class="settings-form">
+        <div class="form-group">
+          <label for="adminLogin">Логін адміністратора</label>
+          <input type="text" id="adminLogin" name="adminLogin" value="admin">
+        </div>
+        
+        <div class="form-group">
+          <label for="adminPassword">Новий пароль</label>
+          <input type="password" id="adminPassword" name="adminPassword">
+        </div>
+        
+        <div class="form-group">
+          <label for="confirmPassword">Підтвердіть пароль</label>
+          <input type="password" id="confirmPassword" name="confirmPassword">
+        </div>
+        
+        <button type="submit" class="admin-btn">Зберегти зміни</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-bottom">
+      <p>&copy; 2023 Гефестова Кузня. Адмін-панель.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

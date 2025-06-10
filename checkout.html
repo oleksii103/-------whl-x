@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Оформлення замовлення - Гефестова Кузня</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <img src="images/logo.png" alt="Гефестова Кузня">
+        <span>Гефестова Кузня</span>
+      </a>
+    </div>
+    
+    <div class="header-buttons">
+      <a href="cart.html" class="cart-btn">Кошик (<span id="cart-count">0</span>)</a>
+      <a href="login.html" class="log-btn">Вхід (<span id="cart-count">0</span>)</a>
+    </div>
+  </header>
+
+  <nav class="main-menu">
+    <ul>
+      <li><a href="index.html">Головна</a></li>
+      <li><a href="catalog.html">Товари</a></li>
+      <li><a href="about.html">Про нас</a></li>
+      <li><a href="contact.html">Контакти</a></li>
+      <li><a href="delivery.html">Доставка</a></li>
+    </ul>
+  </nav>
+
+  <main class="checkout-main">
+    <h1>Оформлення замовлення</h1>
+    
+    <div class="breadcrumbs">
+      <a href="index.html">Головна</a> > 
+      <a href="cart.html">Кошик</a> > 
+      <span>Оформлення</span>
+    </div>
+
+    <div class="checkout-container">
+      <form class="checkout-form">
+        <h2>Контактні дані</h2>
+        <div class="form-group">
+          <label for="fullname">ПІБ *</label>
+          <input type="text" id="fullname" name="fullname" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Телефон *</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email">
+        </div>
+
+        <h2>Доставка</h2>
+        <div class="form-group">
+          <label for="delivery-method">Спосіб доставки *</label>
+          <select id="delivery-method" name="delivery-method" required>
+            <option value="">Оберіть спосіб доставки</option>
+            <option value="self">Самовивіз (м. Київ, вул. Ковальська, 15)</option>
+            <option value="courier">Доставка кур'єром по Києву (+500 грн)</option>
+            <option value="nova-poshta">Доставка Новою Поштою</option>
+          </select>
+        </div>
+        
+        <div class="form-group delivery-address">
+          <label for="address">Адреса доставки</label>
+          <textarea id="address" name="address"></textarea>
+        </div>
+
+        <h2>Оплата</h2>
+        <div class="payment-methods">
+          <label>
+            <input type="radio" name="payment" value="cash" checked>
+            <span>Готівкою при отриманні</span>
+          </label>
+          <label>
+            <input type="radio" name="payment" value="card">
+            <span>Оплата карткою онлайн</span>
+          </label>
+          <label>
+            <input type="radio" name="payment" value="bank">
+            <span>Банківський переказ</span>
+          </label>
+        </div>
+
+        <div class="form-group comments">
+          <label for="comments">Коментар до замовлення</label>
+          <textarea id="comments" name="comments"></textarea>
+        </div>
+
+        <div class="order-summary">
+          <h3>Ваше замовлення</h3>
+          <div class="summary-items"></div>
+          <div class="summary-total">
+            <span>До сплати:</span>
+            <span class="total-price">0 грн</span>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-order">Підтвердити замовлення</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Контакти</h3>
+        <p>+380 (96) 536-41-01</p>
+        <p>gefestova@example.com</p>
+      </div>
+      <div class="footer-section">
+        <h3>Графік роботи</h3>
+        <p>Пн-Пт: 9:00-18:00</p>
+      </div>
+      <div class="footer-section">
+        <h3>Інформація</h3>
+        <a href="delivery.html">Доставка</a>
+        <a href="#">Оплата</a>
+        <a href="#">Гарантія</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2023 Гефестова Кузня. Усі права захищені.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

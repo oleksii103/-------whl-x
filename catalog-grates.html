@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Забори - Гефестова Кузня</title>
+  <title>Ковані грати - Гефестова Кузня</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -29,30 +29,60 @@
       <a href="login.html" class="log-btn">Вхід (<span id="cart-count">0</span>)</a>
     </div>
   </header>
-  <nav class="main-menu">...</nav>
+
+  <nav class="main-menu">
+    <ul>
+      <li><a href="index.html">Головна</a></li>
+      <li>
+        <a href="catalog.html">Товари</a>
+      </li>
+      <li><a href="about.html">Про нас</a></li>
+      <li><a href="contact.html">Контакти</a></li>
+      <li><a href="delivery.html">Доставка</a></li>
+    </ul>
+  </nav>
 
   <main class="catalog-main">
-    <h1>Ковані забори</h1>
+    <h1>Ковані грати</h1>
     
     <div class="breadcrumbs">
       <a href="index.html">Головна</a> > 
       <a href="catalog.html">Каталог</a> > 
-      <span>Забори</span>
+      <span>Грати</span>
+    </div>
+
+    <div class="catalog-description">
+      <p>Наші ковані грати - це поєднання міцності та елегантності. Виготовляємо грати для вікон, балконів, сходових маршів та спеціальні конструкції за індивідуальними проектами.</p>
     </div>
 
     <div class="catalog-filters">
       <div class="filter-group">
-        <h3>Висота:</h3>
-        <label><input type="checkbox" checked> До 1.5м</label>
-        <label><input type="checkbox" checked> 1.5-2м</label>
-        <label><input type="checkbox" checked> Від 2м</label>
+        <h3>Призначення:</h3>
+        <label><input type="checkbox" checked> Віконні</label>
+        <label><input type="checkbox" checked> Балконні</label>
+        <label><input type="checkbox" checked> Сходові</label>
+        <label><input type="checkbox" checked> Декоративні</label>
       </div>
       <div class="filter-group">
-        <h3>Стиль:</h3>
-        <label><input type="checkbox" checked> Класичний</label>
-        <label><input type="checkbox" checked> Модерн</label>
-        <label><input type="checkbox" checked> Рустик</label>
+        <h3>Матеріал:</h3>
+        <label><input type="checkbox" checked> Сталь</label>
+        <label><input type="checkbox" checked> Нержавіюча сталь</label>
+        <label><input type="checkbox" checked> Поєднання метал+дерево</label>
       </div>
+      <div class="filter-group">
+        <h3>Ціна:</h3>
+        <input type="range" min="2000" max="30000" value="10000" class="price-slider">
+        <div class="price-range">
+          <span>2000 грн</span>
+          <span>30000 грн</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pagination">
+      <a href="#" class="active">1</a>
+      <a href="#">2</a>
+      <a href="#">></a>
     </div>
   </main>
 
@@ -79,6 +109,7 @@
       <p>&copy; 2023 Гефестова Кузня. Усі права захищені.</p>
     </div>
   </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
