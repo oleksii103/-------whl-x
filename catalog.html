@@ -19,6 +19,10 @@
       border-radius: 5px;
       overflow: hidden;
       transition: all 0.3s ease;
+      box-sizing: border-box;
+      min-height: 350px;
+      display: flex;
+      flex-direction: column;
     }
     
     .product-card:hover {
@@ -33,6 +37,9 @@
     
     .product-info {
       padding: 15px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
     }
     
     .product-title {
@@ -53,7 +60,7 @@
       color: white;
       border: none;
       padding: 10px;
-      width: 100%;
+      width: 90%;
       cursor: pointer;
       border-radius: 4px;
       font-size: 16px;
@@ -61,6 +68,7 @@
       text-decoration: none;
       display: block;
       text-align: center;
+      margin-top: auto;
     }
     
     .buy-now:hover {
@@ -180,8 +188,6 @@
 
   <main class="catalog-main">
     <h1>Каталог товарів</h1>
-    
-   
     
     <!-- Фільтри товарів -->
     <div class="filters">

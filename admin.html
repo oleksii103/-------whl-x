@@ -24,19 +24,31 @@
     }
     
     .logo {
-      display: flex;
-      align-items: center;
-    }
-    
-    .logo img {
-      height: 40px;
-      margin-right: 10px;
-    }
-    
-    .logo span {
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 50px; /* Фіксована висота як у зображення */
+  }
+
+  .logo a {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  .logo img {
+    height: 100%;
+  }
+
+  .logo span {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-left: 10px;
+  }
     
     .logout-btn {
       background-color: #e74c3c;
@@ -259,10 +271,11 @@
   <header>
     <div class="logo">
       <a href="index.html">
-        <img src="images/logo.png" alt="Гефестова Кузня">
-        <span>Гефестова Кузня</span>
+        <img src="images/logo.jpg" alt="Гефестова Кузня">
+        <span class="logo-text">Гефестова Кузня</span>
       </a>
     </div>
+
     
     <div class="header-buttons">
        <a href="index.html" class="logout-btn">вихід</a>
