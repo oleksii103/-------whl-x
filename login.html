@@ -10,13 +10,12 @@
   <header>
     <div class="logo">
       <a href="index.html">
-        <img src="images/logo.png" alt="Гефестова Кузня">
+        <img src="images/logo.jpg" alt="Гефестова Кузня">
         <span>Гефестова Кузня</span>
       </a>
     </div>
     
     <div class="header-buttons">
-      
       <a href="login.html" class="header-btn log-btn">
         <i>👤</i> Вхід
       </a>
@@ -44,8 +43,8 @@
     <div class="footer-content">
       <div class="footer-section">
         <h3>Контакти</h3>
-        <p>+380 (96) 536-41-01</p>
-        <p>gefestova@example.com</p>
+        <p>+380682641738</p>
+        <p> fmobilend02@gmail.com </p>
       </div>
       <div class="footer-section">
         <h3>Графік роботи</h3>
@@ -65,8 +64,14 @@
       const password = document.getElementById('password').value;
       const messageElement = document.getElementById('login-message');
       
-      if (username === 'admin' && password === 'admin') {
-        // Успішний вхід - перенаправлення на адмін-панель
+      // Отримуємо збережені облікові дані або використовуємо дефолтні
+      const savedCredentials = JSON.parse(localStorage.getItem('adminCredentials')) || { 
+        login: 'admin', 
+        password: 'admin' 
+      };
+      
+      if (username === savedCredentials.login && password === savedCredentials.password) {
+        // Успішний вхід
         window.location.href = 'admin.html';
       } else {
         // Помилка входу

@@ -331,7 +331,6 @@
       </div>
     </section>
    
-
     <section id="settings-section" class="admin-section">
       <h2>Налаштування</h2>
       <form class="settings-form">
@@ -383,7 +382,7 @@
       const productsContainer = document.getElementById('productsContainer');
       const messageDiv = document.getElementById('message');
       
-      // Масив для зберігання товарів (в реальному додатку це буде база даних)
+      // Масив для зберігання товарів
       let products = JSON.parse(localStorage.getItem('products')) || [];
       
       // Відображення всіх товарів при завантаженні сторінки
@@ -440,6 +439,51 @@
           showMessage('Товар успішно додано!', 'success');
         };
         reader.readAsDataURL(productImage);
+      });
+      
+      // Обробка форми налаштувань (зміна пароля)
+      const settingsForm = document.querySelector('.settings-form');
+      
+      // Завантажуємо поточні облікові дані при завантаженні сторінки
+      const savedCredentials = JSON.parse(localStorage.getItem('adminCredentials')) || { 
+        login: 'admin', 
+        password: 'admin' 
+      };
+      document.getElementById('adminLogin').value = savedCredentials.login;
+      
+      settingsForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const login = document.getElementById('adminLogin').value.trim();
+        const password = document.getElementById('adminPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        
+        // Якщо пароль не змінювався - зберігаємо старий
+        const newPassword = password || savedCredentials.password;
+        
+        // Перевірка на збіг паролів, якщо введено новий пароль
+        if (password && password !== confirmPassword) {
+          showMessage('Паролі не збігаються', 'error');
+          return;
+        }
+        
+        if (password && password.length < 4) {
+          showMessage('Пароль має бути не менше 4 символів', 'error');
+          return;
+        }
+        
+        // Зберігання облікових даних у localStorage
+        const adminData = {
+          login: login,
+          password: newPassword
+        };
+        
+        localStorage.setItem('adminCredentials', JSON.stringify(adminData));
+        showMessage('Налаштування збережено успішно!', 'success');
+        
+        // Очистити поля паролів
+        document.getElementById('adminPassword').value = '';
+        document.getElementById('confirmPassword').value = '';
       });
       
       // Функція для відображення товарів
@@ -577,6 +621,7 @@
       function showMessage(text, type) {
         messageDiv.textContent = text;
         messageDiv.className = 'message ' + type;
+        messageDiv.style.display = 'block';
         
         // Ховаємо повідомлення через 3 секунди
         setTimeout(() => {

@@ -359,4 +359,55 @@ if (document.getElementById('logout-btn')) {
     window.location.href = 'index.html';
   });
 }
+const settingsForm = document.getElementById('settingsForm');
+const settingsMessage = document.getElementById('settingsMessage');
+
+document.addEventListener('DOMContentLoaded', function() {
+  const savedSettings = JSON.parse(localStorage.getItem('adminSettings')) || {
+    login: 'admin',
+    password: 'admin'
+  };
+  
+  document.getElementById('adminLogin').value = savedSettings.login;
+});
+
+settingsForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const login = document.getElementById('adminLogin').value;
+  const newPassword = document.getElementById('adminPassword').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+  
+  if (newPassword && newPassword !== confirmPassword) {
+    showSettingsMessage('Паролі не співпадають', 'error');
+    return;
+  }
+  
+  const currentSettings = JSON.parse(localStorage.getItem('adminSettings')) || {
+    login: 'admin',
+    password: 'admin'
+  };
+  
+  const updatedSettings = {
+    login: login,
+    password: newPassword || currentSettings.password // Якщо новий пароль не введено, залишаємо старий
+  };
+  
+  localStorage.setItem('adminSettings', JSON.stringify(updatedSettings));
+  
+  document.getElementById('adminPassword').value = '';
+  document.getElementById('confirmPassword').value = '';
+  
+  showSettingsMessage('Налаштування успішно збережено!', 'success');
+});
+
+function showSettingsMessage(text, type) {
+  settingsMessage.textContent = text;
+  settingsMessage.className = 'message ' + type;
+  settingsMessage.style.display = 'block';
+  
+  setTimeout(() => {
+    settingsMessage.style.display = 'none';
+  }, 3000);
+}
 }
